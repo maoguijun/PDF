@@ -9,6 +9,18 @@ class PDF extends Component {
     this.getPdf = this
       .getPdf
       .bind(this)
+    this.renderPage = this
+      .renderPage
+      .bind(this)
+    this.nextPage = this
+      .nextPage
+      .bind(this)
+    this.prePage = this
+      .prePage
+      .bind(this)
+    this.scaleChange = this
+      .scaleChange
+      .bind(this)
   }
   componentWillMount() {
     // 导入pdf.js
@@ -43,14 +55,14 @@ class PDF extends Component {
   // {       console.log(pdf)       pdf         .getPage(num) .then(page => { let
   // pageRendering = true;           const viewport =
   // page.getViewport(this.scale);           this.canvas.height = viewport.height;
-  //           this.canvas.width = viewport.width;           var renderContext =
-  // {             canvasContext: this.context, viewport: viewport           };
-  // var renderTask = page.render(renderContext);           // Wait for rendering
-  // to finish   renderTask             .promise             .then(() => {
+  //           this.canvas.width = viewport.width;           var renderContext = {
+  //             canvasContext: this.context, viewport: viewport           }; var
+  // renderTask = page.render(renderContext);           // Wait for rendering to
+  // finish   renderTask             .promise             .then(() => {
   // pageRendering = false;               if (this.pageNumPending !== null) { //
   // New page rendering is pending this.renderPage(this.pageNumPending);
   // this.pageNumPending = null;               }             });     }) }) }
-  renderPage = () => {
+  renderPage() {
 
     this
       .loadingTask
@@ -106,7 +118,7 @@ class PDF extends Component {
       })
   }
   // 下一页
-  nextPage = () => {
+  nextPage() {
 
     this.current = this.current + 1
     if (this.pageRendering) {
@@ -116,7 +128,7 @@ class PDF extends Component {
     }
   }
   // 上一页
-  prePage = () => {
+  prePage() {
     this.current = this.current - 1
     if (this.pageRendering) {
       this.pageNumPending = this.current
@@ -126,7 +138,7 @@ class PDF extends Component {
 
   }
   // 缩小
-  scaleChange = () => {
+  scaleChange() {
     this.scale = this.scale - 0.1
     this.renderPage(this.current)
   }
