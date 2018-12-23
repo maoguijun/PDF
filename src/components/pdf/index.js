@@ -6,6 +6,9 @@ class PDF extends Component {
     // this.state = {   scale: 1.5,   current: 1 }
     this.current = 1
     this.scale = 1.5
+    this.getPdf = this
+      .getPdf
+      .bind(this)
   }
   componentWillMount() {
     // 导入pdf.js
@@ -21,7 +24,7 @@ class PDF extends Component {
       return false
     }
   }
-  getPdf = () => {
+  getPdf() {
     const {url} = this.props
     window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'http://mozilla.github.io/pdf.js/build/pdf.worker.js'
 
